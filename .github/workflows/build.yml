@@ -16,7 +16,7 @@ jobs:
           gradle-version: 8.7
       - name: Unzip and build
         run: |
-          unzip -o *.zip -d project
+          for f in *.zip; do unzip -o "$f" -d project; done
           DIR=$(dirname "$(find project -name 'settings.gradle*' | head -n1)")
           cd "$DIR"
           if [ -f gradlew ]; then chmod +x gradlew; ./gradlew assembleDebug; else gradle assembleDebug; fi
